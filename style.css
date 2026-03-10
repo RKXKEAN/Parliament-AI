@@ -1,0 +1,489 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap');
+
+:root {
+    --gold: #c9a84c;
+    --gold-light: #e8cc7a;
+    --gold-dim: #8a6d2e;
+    --navy: #0b1120;
+    --navy-mid: #111b2e;
+    --navy-card: #152035;
+    --navy-hover: #1c2d47;
+    --border: rgba(201, 168, 76, 0.18);
+    --border-hi: rgba(201, 168, 76, 0.55);
+    --text: #d8dde8;
+    --text-dim: #7a8499;
+    --red: #e05252;
+    --green: #52b788;
+}
+
+html,
+body,
+[data-testid="stAppViewContainer"],
+[data-testid="stMain"],
+.main {
+    background: var(--navy) !important;
+}
+
+* {
+    font-family: 'Source Sans 3', sans-serif !important;
+}
+
+#MainMenu,
+footer {
+    visibility: hidden;
+}
+
+[data-testid="stDecoration"] {
+    display: none;
+}
+
+/* ซ่อน header background ยกเว้น sidebar toggle */
+header {
+    background: transparent !important;
+    border: none !important;
+}
+
+[data-testid="stHeader"] {
+    background: transparent !important;
+}
+
+[data-testid="stToolbar"] {
+    display: none !important;
+}
+
+/* Sidebar toggle button — collapsed state (ลูกศรเล็กๆ ด้านซ้าย) */
+[data-testid="stSidebarCollapsedControl"],
+[data-testid="collapsedControl"] {
+    top: 1rem !important;
+    left: .5rem !important;
+}
+
+[data-testid="stSidebarCollapsedControl"] button,
+[data-testid="collapsedControl"] button {
+    background: var(--navy-card) !important;
+    border: 1px solid var(--border-hi) !important;
+    border-radius: 4px !important;
+    color: var(--gold) !important;
+    width: 2rem !important;
+    height: 2rem !important;
+    transition: all .2s !important;
+}
+
+[data-testid="stSidebarCollapsedControl"] button:hover,
+[data-testid="collapsedControl"] button:hover {
+    background: var(--navy-hover) !important;
+    border-color: var(--gold) !important;
+    box-shadow: 0 0 12px rgba(201, 168, 76, .35) !important;
+}
+
+[data-testid="stSidebarCollapsedControl"] svg,
+[data-testid="collapsedControl"] svg {
+    fill: var(--gold) !important;
+    stroke: var(--gold) !important;
+}
+
+/* Sidebar expand button inside header (hamburger icon) */
+button[data-testid="baseButton-header"],
+header button {
+    background: var(--navy-card) !important;
+    border: 1px solid var(--border-hi) !important;
+    border-radius: 4px !important;
+    color: var(--gold) !important;
+}
+
+button[data-testid="baseButton-header"]:hover,
+header button:hover {
+    background: var(--navy-hover) !important;
+    box-shadow: 0 0 12px rgba(201, 168, 76, .35) !important;
+}
+
+button[data-testid="baseButton-header"] svg,
+header button svg {
+    fill: var(--gold) !important;
+    color: var(--gold) !important;
+}
+
+/* HEADER */
+.parl-header {
+    position: relative;
+    background: linear-gradient(135deg, #0d1829, #162240, #0d1829);
+    border: 1px solid var(--border-hi);
+    border-radius: 4px;
+    padding: 2.2rem 3rem 1.8rem;
+    margin-bottom: 2rem;
+    overflow: hidden;
+    text-align: center;
+}
+
+.parl-header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(201, 168, 76, .03) 60px, rgba(201, 168, 76, .03) 61px),
+        repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(201, 168, 76, .03) 60px, rgba(201, 168, 76, .03) 61px);
+    pointer-events: none;
+}
+
+.parl-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 10%;
+    right: 10%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+.parl-crown {
+    font-size: 2.4rem;
+    margin-bottom: .4rem;
+    filter: drop-shadow(0 0 12px rgba(201, 168, 76, .6));
+}
+
+.parl-title {
+    font-family: 'Cinzel', serif !important;
+    font-size: clamp(1.3rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: .06em;
+    margin: 0;
+    text-shadow: 0 0 30px rgba(201, 168, 76, .4);
+}
+
+.parl-subtitle {
+    font-size: .82rem;
+    color: var(--gold-dim);
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    margin-top: .5rem;
+}
+
+.parl-divider {
+    width: 120px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    margin: .9rem auto 0;
+}
+
+/* SIDEBAR */
+[data-testid="stSidebar"] {
+    background: var(--navy-mid) !important;
+    border-right: 1px solid var(--border) !important;
+}
+
+[data-testid="stSidebar"] * {
+    color: var(--text) !important;
+}
+
+.sidebar-section-title {
+    font-family: 'Cinzel', serif !important;
+    font-size: .7rem !important;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--gold) !important;
+    padding: .6rem 0 .3rem;
+    border-top: 1px solid var(--border);
+    margin-top: .5rem;
+}
+
+[data-testid="stSidebar"] label {
+    color: var(--text-dim) !important;
+    font-size: .82rem !important;
+}
+
+[data-testid="stSidebar"] .stSelectbox>div>div,
+[data-testid="stSidebar"] .stTextInput>div>div>input {
+    background: var(--navy) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text) !important;
+    border-radius: 3px !important;
+}
+
+/* TABS */
+[data-testid="stTabs"] [role="tablist"] {
+    border-bottom: 1px solid var(--border) !important;
+}
+
+[data-testid="stTabs"] [role="tab"] {
+    font-family: 'Cinzel', serif !important;
+    font-size: .78rem !important;
+    letter-spacing: .12em;
+    color: var(--text-dim) !important;
+    background: transparent !important;
+    border: none !important;
+    padding: .7rem 1.4rem !important;
+    border-bottom: 2px solid transparent !important;
+}
+
+[data-testid="stTabs"] [role="tab"]:hover {
+    color: var(--gold) !important;
+}
+
+[data-testid="stTabs"] [role="tab"][aria-selected="true"] {
+    color: var(--gold) !important;
+    border-bottom-color: var(--gold) !important;
+}
+
+/* CARDS */
+.parl-card {
+    background: var(--navy-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.parl-card-title {
+    font-family: 'Cinzel', serif !important;
+    font-size: .72rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    padding-bottom: .5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+/* TRANSCRIPT BOX */
+.transcript-box {
+    background: #0a1018;
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--gold-dim);
+    border-radius: 3px;
+    padding: 1.2rem;
+    max-height: 420px;
+    overflow-y: auto;
+    font-family: 'SF Mono', 'Fira Code', monospace !important;
+    font-size: .82rem;
+    color: #9fb8d8;
+    line-height: 1.8;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+.transcript-box::-webkit-scrollbar {
+    width: 4px;
+}
+
+.transcript-box::-webkit-scrollbar-thumb {
+    background: var(--border-hi);
+    border-radius: 2px;
+}
+
+/* SUMMARY BOX */
+.summary-box {
+    background: linear-gradient(135deg, #0f1c10, #0d1a1f);
+    border: 1px solid rgba(82, 183, 136, .25);
+    border-left: 3px solid var(--green);
+    border-radius: 3px;
+    padding: 1.4rem 1.6rem;
+    white-space: pre-wrap;
+    font-size: .9rem;
+    line-height: 1.85;
+    color: #b8d4c0;
+}
+
+/* PROGRESS */
+[data-testid="stProgress"]>div>div {
+    background: linear-gradient(90deg, var(--gold-dim), var(--gold)) !important;
+    border-radius: 2px !important;
+}
+
+/* BUTTONS */
+.stButton>button[kind="primary"] {
+    background: linear-gradient(135deg, #7a5a1e, var(--gold)) !important;
+    color: var(--navy) !important;
+    font-family: 'Cinzel', serif !important;
+    font-size: .78rem !important;
+    letter-spacing: .1em;
+    border: none !important;
+    border-radius: 3px !important;
+    font-weight: 700 !important;
+}
+
+.stButton>button[kind="primary"]:hover {
+    background: linear-gradient(135deg, var(--gold), var(--gold-light)) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 16px rgba(201, 168, 76, .35) !important;
+}
+
+/* RESULT BUTTON — special gold outline */
+.result-btn .stButton>button {
+    background: var(--navy-card) !important;
+    color: var(--gold-light) !important;
+    border: 1px solid var(--border-hi) !important;
+    border-radius: 3px !important;
+    font-family: 'Cinzel', serif !important;
+    font-size: .78rem !important;
+    letter-spacing: .1em;
+    padding: .6rem 1.4rem !important;
+    width: 100%;
+    transition: all .2s !important;
+}
+
+.result-btn .stButton>button:hover {
+    background: var(--navy-hover) !important;
+    border-color: var(--gold) !important;
+    box-shadow: 0 0 18px rgba(201, 168, 76, .25) !important;
+    transform: translateY(-1px) !important;
+}
+
+/* DOWNLOAD BUTTONS */
+.stDownloadButton>button {
+    background: var(--navy-card) !important;
+    color: var(--gold) !important;
+    border: 1px solid var(--border-hi) !important;
+    border-radius: 3px !important;
+    font-size: .8rem !important;
+}
+
+.stDownloadButton>button:hover {
+    background: var(--navy-hover) !important;
+    border-color: var(--gold) !important;
+}
+
+/* FILE UPLOADER */
+[data-testid="stFileUploader"] {
+    background: var(--navy-card) !important;
+    border: 1px dashed var(--border-hi) !important;
+    border-radius: 4px !important;
+}
+
+/* TEXT INPUT / AREA */
+.stTextInput>div>div>input,
+.stTextArea textarea {
+    background: var(--navy-card) !important;
+    border: 1px solid var(--border) !important;
+    color: var(--text) !important;
+    border-radius: 3px !important;
+}
+
+.stTextInput>div>div>input:focus,
+.stTextArea textarea:focus {
+    border-color: var(--gold) !important;
+}
+
+/* ALERTS */
+[data-testid="stSuccess"] {
+    background: rgba(82, 183, 136, .08) !important;
+    border-color: var(--green) !important;
+}
+
+[data-testid="stWarning"] {
+    background: rgba(201, 168, 76, .08) !important;
+    border-color: var(--gold-dim) !important;
+}
+
+[data-testid="stError"] {
+    background: rgba(224, 82, 82, .08) !important;
+    border-color: var(--red) !important;
+}
+
+/* EXPANDER */
+[data-testid="stExpander"] {
+    background: var(--navy-card) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: 4px !important;
+}
+
+[data-testid="stExpander"] summary {
+    color: var(--gold) !important;
+    font-size: .85rem !important;
+}
+
+/* MODAL OVERLAY */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(5, 10, 20, .85);
+    backdrop-filter: blur(6px);
+    z-index: 9998;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 2rem 1rem;
+    overflow-y: auto;
+}
+
+.modal-box {
+    background: var(--navy-mid);
+    border: 1px solid var(--border-hi);
+    border-radius: 8px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, .7),
+        0 0 0 1px rgba(201, 168, 76, .1);
+    animation: modalIn .25s ease-out;
+}
+
+@keyframes modalIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px)
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0)
+    }
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 1.6rem;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(135deg, #0d1829, #162240);
+}
+
+.modal-title {
+    font-family: 'Cinzel', serif;
+    color: var(--gold-light);
+    font-size: 1rem;
+    letter-spacing: .08em;
+    margin: 0;
+}
+
+.modal-body {
+    padding: 1.6rem;
+}
+
+.modal-footer {
+    padding: 1rem 1.6rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    gap: .8rem;
+    flex-wrap: wrap;
+    background: rgba(0, 0, 0, .2);
+}
+
+/* SECTION LABEL */
+.section-label {
+    font-family: 'Cinzel', serif !important;
+    font-size: .68rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: .6rem;
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+}
+
+.section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+}
+
+.stCaption {
+    color: var(--text-dim) !important;
+    font-size: .78rem !important;
+}
+
+.stRadio label {
+    color: var(--text) !important;
+    font-size: .85rem !important;
+}
