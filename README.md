@@ -1,370 +1,342 @@
 <div align="center">
-  <img src="https://img.shields.io/badge/Parliament%20AI-Thai%20Legislative%20System-c9a84c?style=for-the-badge&logo=data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iI2M5YTg0YyIgZD0iTTEyIDJMMyA3djJoMTh2LTJMMTB6TTMgMTl2MmgxOHYtMmgtMnYtOGgtMnY4aC0ydi04SDl2OEg3di04SDV2OHoiLz48L3N2Zz4=" />
-  <br/><br/>
 
-# 🏛️ Parliament AI
+# Transcript AI
 
-  <p>
-    <a href="#-english"><img src="https://img.shields.io/badge/🇬🇧-English-1a237e?style=flat-square" /></a>
-    &nbsp;
-    <a href="#-ภาษาไทย"><img src="https://img.shields.io/badge/🇹🇭-ภาษาไทย-c9a84c?style=flat-square" /></a>
-  </p>
+**Transcribe & Summarize Any Audio or Video**
 
-  <p>
-    <img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white" />
-    <img src="https://img.shields.io/badge/Streamlit-1.35+-FF4B4B?style=flat-square&logo=streamlit&logoColor=white" />
-    <img src="https://img.shields.io/badge/Groq-Whisper_API-F55036?style=flat-square" />
-    <img src="https://img.shields.io/badge/OpenRouter-LLM-7C3AED?style=flat-square" />
-    <img src="https://img.shields.io/badge/License-MIT-52b788?style=flat-square" />
-  </p>
+[![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=flat-square&logo=python&logoColor=white)](https://python.org)
+[![Streamlit](https://img.shields.io/badge/Streamlit-1.35+-FF4B4B?style=flat-square&logo=streamlit&logoColor=white)](https://streamlit.io)
+[![Groq](https://img.shields.io/badge/Groq-Whisper-F55036?style=flat-square)](https://console.groq.com)
+[![OpenRouter](https://img.shields.io/badge/OpenRouter-LLM-7C3AED?style=flat-square)](https://openrouter.ai)
+[![License](https://img.shields.io/badge/License-MIT-52b788?style=flat-square)](LICENSE)
+
 </div>
 
 ---
 
-<!-- ════════════════════════════════════════════════════════════
-     🇬🇧  ENGLISH
-     ════════════════════════════════════════════════════════════ -->
-
-## 🇬🇧 English
-
 <details open>
-<summary><b>Click to expand / collapse</b></summary>
+<summary><b>🇬🇧 English</b></summary>
 
-### Overview
+## Overview
 
-**Parliament AI** is an AI-powered web application that automatically transcribes and summarizes Thai parliamentary sessions. Upload an audio file, paste a YouTube link, or paste existing text — the system handles the rest.
+**Transcript AI** is a web application that automatically transcribes and summarizes any audio or video content. Upload an audio file, paste a YouTube URL, or paste existing text — the system handles everything in seconds.
 
-### ✨ Features
+Built with a warm dark theme, minimal UI, and animated waveform header.
 
-| Feature | Description |
-|---|---|
-| 🎙️ **Audio Transcription** | `.mp3` & `.wav` via Groq API (cloud) or Faster-Whisper (local CPU) |
-| ▶️ **YouTube Support** | Paste URL → auto-download audio → transcribe → summarize |
-| 📝 **Paste Text** | Instantly summarize any existing transcript |
-| 🤖 **AI Summarization** | OpenRouter & Google Gemini supported |
-| 📋 **6 Summary Formats** | Official report / Brief / Political analysis / Resolutions / Speaker analysis / Press release |
-| 💾 **Export** | Download reports as `.txt` and `.docx` |
-| 🎨 **Parliament Dark Gold UI** | Custom gold & navy theme |
+## Features
 
-### 📁 Project Structure
+| | Feature | Description |
+|---|---|---|
+| 🎙️ | **Audio Transcription** | `.mp3` / `.wav` via Groq Whisper API (cloud) or Faster-Whisper (local) |
+| ▶️ | **YouTube** | Paste any URL → auto-download → transcribe → summarize |
+| 📝 | **Paste Text** | Summarize any existing transcript instantly |
+| 🤖 | **AI Summarization** | 6 output formats via OpenRouter |
+| 📊 | **Keywords** | Auto-extracted keyword chips from every summary |
+| ⏱️ | **Processing Time** | Shows transcription and total analysis duration |
+| 🗂 | **History** | All results saved to SQLite with search, tags & re-export |
+| 🏷️ | **Tags** | Label and organize history records |
+| 💾 | **Export** | Download as `.txt` or `.docx` |
+| ⚙️ | **Settings Popup** | Configure engine, model, API key in one place |
+
+## Project Structure
 
 ```
-parliament-transcriber/
-├── app.py                  ← Main Streamlit application
-├── style.css               ← Parliament Dark Gold theme
-├── requirements.txt        ← Python dependencies
-├── .env                    ← API Keys (never commit to Git)
+transcript-ai/
+├── app.py              ← Main Streamlit app
+├── style.css           ← Dark warm theme
+├── requirements.txt
+├── .env                ← API Keys (never commit)
 ├── .gitignore
+├── history.db          ← SQLite database (auto-created)
 └── utils/
-    ├── transcriber.py      ← Groq Whisper API + Local Faster-Whisper
-    ├── summarizer.py       ← Prompt templates + OpenRouter/Gemini
-    └── exporter.py         ← .txt and .docx export
+    ├── __init__.py
+    ├── transcriber.py  ← Groq Whisper + Local Faster-Whisper
+    ├── summarizer.py   ← Prompt templates + OpenRouter
+    ├── exporter.py     ← .txt and .docx export
+    └── database.py     ← SQLite CRUD + tags
 ```
 
-### 🚀 Installation
+## Installation
 
-**1. Install FFmpeg**
+### 1. Install FFmpeg
 
 ```bash
-# Ubuntu / Debian
-sudo apt install ffmpeg
+# Windows
+winget install Gyan.FFmpeg
 
 # macOS
 brew install ffmpeg
 
-# Windows
-winget install Gyan.FFmpeg
+# Ubuntu / Debian
+sudo apt install ffmpeg
 ```
 
-**2. Clone & install dependencies**
+### 2. Clone & install dependencies
 
 ```bash
-git clone https://github.com/your-username/parliament-transcriber.git
-cd parliament-transcriber
+git clone https://github.com/your-username/transcript-ai.git
+cd transcript-ai
 
 python -m venv venv
-source venv/bin/activate        # macOS / Linux
-venv\Scripts\activate           # Windows
+venv\Scripts\activate        # Windows
+source venv/bin/activate     # macOS / Linux
 
 pip install -r requirements.txt
 pip install groq yt-dlp python-dotenv
 ```
 
-**3. Configure API Keys**
+### 3. Configure API Keys
 
 Create a `.env` file in the project root:
 
 ```env
-# Groq API — Speech-to-Text (free)
-# Register at: https://console.groq.com
+# Groq — Speech-to-Text (free)
+# Get key: https://console.groq.com
 GROQ_API_KEY=gsk_xxxxxxxxxxxxxxxxxxxx
 
-# OpenRouter — LLM summarization (free models available)
-# Register at: https://openrouter.ai/keys
+# OpenRouter — LLM Summarization (free models available)
+# Get key: https://openrouter.ai/keys
 OPENROUTER_API_KEY=sk-or-v1-xxxxxxxxxxxx
-
-# Google Gemini — alternative LLM (optional)
-# Register at: https://aistudio.google.com/apikey
-GEMINI_API_KEY=AIza-xxxxxxxxxxxx
 ```
 
-**4. Run the app**
+### 4. Run
 
 ```bash
 streamlit run app.py
 ```
 
-Open your browser at `http://localhost:8501`
+Open `http://localhost:8501`
 
-### ⚙️ Configuration
+## How to Use
 
-**Speech-to-Text Engine**
+### First Run
+1. Click any **Transcribe** or **Summarize** button
+2. If no API key is set → **Settings popup** opens automatically
+3. Enter your OpenRouter API Key and choose a model
+4. Click **Save & Start** → processing begins immediately
+
+### Audio Tab
+- Upload `.mp3` or `.wav` file
+- Click **Transcribe & Summarize**
+- View transcript live as it processes
+- Open Report → see summary + keywords + export options
+
+### YouTube Tab
+- Paste any YouTube URL
+- Click **Download & Transcribe**
+- Audio downloaded automatically via yt-dlp
+
+### History Tab
+- All results saved automatically
+- Search by filename or content
+- Click **View** to re-open any past report
+- Add **Tags** to organize records
+- Re-download `.txt` / `.docx` anytime
+- Delete individual records
+
+## Settings
+
+### Speech-to-Text Engine
 
 | Engine | Speed | Internet | Notes |
 |---|---|---|---|
 | **Groq API** ⭐ | ⚡⚡⚡⚡⚡ | Required | Free — 10–50× faster than CPU |
 | **Local Whisper** | ⚡⚡ | Not needed | Higher privacy, slower |
 
-**Recommended Groq model:** `whisper-large-v3-turbo`
+Recommended: `whisper-large-v3-turbo`
 
-**LLM Provider**
+### LLM Models (via OpenRouter)
 
-| Provider | Recommended Model | Free |
-|---|---|---|
-| **OpenRouter** | `google/gemini-2.0-flash-001` | ✅ |
-| **Google Gemini** | `gemini-2.0-flash` | ✅ (without billing) |
+| Model | Notes |
+|---|---|
+| `google/gemini-2.0-flash-001` | ⭐ Recommended — fast, free, Thai support |
+| `google/gemini-2.5-pro-preview` | Higher quality, may cost |
+| `meta-llama/llama-3.3-70b-instruct` | Free alternative |
+| `deepseek/deepseek-chat-v3-0324` | Good for long content |
+| `mistralai/mistral-small-3.1-24b-instruct` | Lightweight |
+| `qwen/qwen-2.5-72b-instruct` | Strong multilingual |
 
-**Summary Formats**
+### Summary Formats
 
 | Format | Best For |
 |---|---|
-| 📋 Full Official Report | Government records, formal documents |
-| ⚡ Brief Summary | Executives, journalists |
-| 🏛️ Political Analysis | Researchers, analysts |
-| ✅ Resolutions & Action Items | Administration, task tracking |
-| 🎤 Speaker Analysis | Reporters, researchers |
-| 📰 Press Release | PR, communications teams |
+| ⚡ Quick Summary | Any content — fast read |
+| 📋 Full Report | Meetings, lectures, interviews |
+| 💡 Key Insights | Deep analysis, research |
+| ✅ Action Items | Meetings, workshops |
+| 🎤 Speaker Analysis | Debates, panels |
+| 📰 Article | Publishing, communications |
 
-### 📊 Estimated Processing Time
+## Processing Time Estimates
 
 | Audio Length | Groq API | Local Whisper (small) |
 |---|---|---|
 | 10 min | ~15–30 sec | ~8 min |
 | 30 min | ~45–90 sec | ~25 min |
 | 60 min | ~2–3 min | ~50 min |
-| 120 min | ~4–6 min | ~100 min |
 
-> Files larger than 25 MB are automatically split into chunks.
+> Files over 25 MB are automatically split into chunks.
 
-### 🐛 Troubleshooting
+## Troubleshooting
 
-| Problem | Solution |
+| Error | Fix |
 |---|---|
-| `FFmpeg not found` | Install FFmpeg and ensure it's in your system PATH |
-| `Groq 413 File Too Large` | Install pydub: `pip install pydub` — auto-chunking will handle it |
-| `OpenRouter 429` | Rate limit reached — wait a moment or switch models |
-| `latin-1 codec error` | Update to latest `summarizer.py` |
-| Sidebar widgets disappear | Update to latest `app.py` (all widgets have explicit `key=`) |
+| `FFmpeg not found` | Install FFmpeg and add to PATH |
+| `Groq 413 File Too Large` | `pip install pydub` — auto-chunking handles it |
+| `OpenRouter 429` | Rate limit reached — wait or switch models |
+| `NameError: get_stats` | Use latest `app.py` with database import |
+| Dialog opens on delete | Use latest `app.py` — fixed |
 
-### 🔒 Security
+## License
 
-- API Keys stored in `.env` — **never commit to Git**
-- Uploaded audio files are deleted automatically after processing
-- No data is permanently stored
-
-### 🛠️ Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Frontend | [Streamlit](https://streamlit.io) |
-| STT (Cloud) | [Groq Whisper API](https://console.groq.com) |
-| STT (Local) | [Faster-Whisper](https://github.com/SYSTRAN/faster-whisper) |
-| LLM | [OpenRouter](https://openrouter.ai) / [Google Gemini](https://aistudio.google.com) |
-| YouTube | [yt-dlp](https://github.com/yt-dlp/yt-dlp) |
-| Audio | [FFmpeg](https://ffmpeg.org) / [pydub](https://github.com/jiaaro/pydub) |
-| Export | [python-docx](https://python-docx.readthedocs.io) |
-| Styling | Custom CSS — Parliament Dark Gold |
-
-### 📄 License
-
-MIT License — free for personal and commercial use.
+MIT — free for personal and commercial use.
 
 </details>
 
 ---
 
-<!-- ════════════════════════════════════════════════════════════
-     🇹🇭  THAI
-     ════════════════════════════════════════════════════════════ -->
-
-## 🇹🇭 ภาษาไทย
-
 <details>
-<summary><b>คลิกเพื่อเปิด / ปิด</b></summary>
+<summary><b>🇹🇭 ภาษาไทย</b></summary>
 
-### ภาพรวม
+## ภาพรวม
 
-**Parliament AI** คือเว็บแอปพลิเคชันที่ใช้ AI ถอดความและสรุปการประชุมรัฐสภาไทยโดยอัตโนมัติ อัปโหลดไฟล์เสียง วาง YouTube URL หรือวางข้อความที่มีอยู่แล้ว — ระบบจะจัดการทุกอย่างให้
+**Transcript AI** คือเว็บแอปที่ถอดความและสรุปเนื้อหาจากเสียงหรือวิดีโอได้ทุกประเภทอัตโนมัติ อัปโหลดไฟล์เสียง วาง URL YouTube หรือวางข้อความ — ระบบจัดการทุกอย่างให้ในไม่กี่วินาที
 
-### ✨ ฟีเจอร์หลัก
+## ฟีเจอร์
 
-| ฟีเจอร์ | รายละเอียด |
-|---|---|
-| 🎙️ **ถอดความเสียง** | รองรับ `.mp3` และ `.wav` ผ่าน Groq API (cloud) หรือ Faster-Whisper (CPU) |
-| ▶️ **YouTube** | วาง URL → ดาวน์โหลดเสียงอัตโนมัติ → ถอดความ → สรุป |
-| 📝 **วางข้อความ** | สรุป transcript ที่มีอยู่แล้วได้ทันที |
-| 🤖 **สรุปด้วย LLM** | รองรับ OpenRouter และ Google Gemini |
-| 📋 **6 รูปแบบสรุป** | รายงานราชการ / สรุปย่อ / วิเคราะห์การเมือง / มติ / วิเคราะห์ผู้พูด / แถลงข่าว |
-| 💾 **Export** | ดาวน์โหลดรายงานเป็น `.txt` และ `.docx` |
-| 🎨 **Parliament Dark Gold UI** | ธีมสีทอง-น้ำเงินเข้ม สไตล์สถาบันนิติบัญญัติ |
+| | ฟีเจอร์ | รายละเอียด |
+|---|---|---|
+| 🎙️ | **ถอดความเสียง** | `.mp3` / `.wav` ผ่าน Groq Whisper API หรือ Faster-Whisper |
+| ▶️ | **YouTube** | วาง URL → ดาวน์โหลดอัตโนมัติ → ถอดความ → สรุป |
+| 📝 | **วางข้อความ** | สรุป transcript ที่มีอยู่แล้วทันที |
+| 🤖 | **สรุปด้วย AI** | 6 รูปแบบ ผ่าน OpenRouter |
+| 📊 | **Keywords** | สกัด keyword อัตโนมัติจากทุก summary |
+| ⏱️ | **เวลาประมวลผล** | แสดงเวลาที่ใช้ถอดความและสรุป |
+| 🗂 | **ประวัติ** | บันทึกลง SQLite ค้นหา แท็ก และ export ย้อนหลังได้ |
+| 🏷️ | **Tags** | ติดป้ายกำกับจัดหมวดหมู่รายการ |
+| 💾 | **Export** | ดาวน์โหลดเป็น `.txt` หรือ `.docx` |
+| ⚙️ | **Settings Popup** | ตั้งค่า engine, model, API key ในที่เดียว |
 
-### 📁 โครงสร้างโปรเจกต์
+## โครงสร้างไฟล์
 
 ```
-parliament-transcriber/
-├── app.py                  ← Streamlit app หลัก
-├── style.css               ← ธีม Parliament Dark Gold
-├── requirements.txt        ← Python dependencies
-├── .env                    ← API Keys (ห้าม commit ขึ้น Git)
+transcript-ai/
+├── app.py              ← Streamlit app หลัก
+├── style.css           ← Dark warm theme
+├── requirements.txt
+├── .env                ← API Keys (ห้าม commit)
 ├── .gitignore
+├── history.db          ← SQLite database (สร้างอัตโนมัติ)
 └── utils/
-    ├── transcriber.py      ← Groq Whisper API + Local Faster-Whisper
-    ├── summarizer.py       ← Prompt templates + OpenRouter/Gemini
-    └── exporter.py         ← Export .txt และ .docx
+    ├── __init__.py
+    ├── transcriber.py  ← Groq Whisper + Local Faster-Whisper
+    ├── summarizer.py   ← Prompt templates + OpenRouter
+    ├── exporter.py     ← Export .txt และ .docx
+    └── database.py     ← SQLite CRUD + tags
 ```
 
-### 🚀 การติดตั้งและรัน
+## การติดตั้ง
 
-**1. ติดตั้ง FFmpeg**
+### 1. ติดตั้ง FFmpeg
 
 ```bash
-# Ubuntu / Debian
-sudo apt install ffmpeg
+# Windows
+winget install Gyan.FFmpeg
 
 # macOS
 brew install ffmpeg
 
-# Windows
-winget install Gyan.FFmpeg
+# Ubuntu / Debian
+sudo apt install ffmpeg
 ```
 
-**2. Clone และติดตั้ง dependencies**
+### 2. Clone และติดตั้ง
 
 ```bash
-git clone https://github.com/your-username/parliament-transcriber.git
-cd parliament-transcriber
+git clone https://github.com/your-username/transcript-ai.git
+cd transcript-ai
 
 python -m venv venv
-source venv/bin/activate        # macOS / Linux
-venv\Scripts\activate           # Windows
+venv\Scripts\activate        # Windows
+source venv/bin/activate     # macOS / Linux
 
 pip install -r requirements.txt
 pip install groq yt-dlp python-dotenv
 ```
 
-**3. ตั้งค่า API Keys**
+### 3. ตั้งค่า API Keys
 
-สร้างไฟล์ `.env` ในโฟลเดอร์โปรเจกต์:
+สร้างไฟล์ `.env`:
 
 ```env
-# Groq API — ถอดความเสียง (ฟรี)
+# Groq — ถอดความเสียง (ฟรี)
 # สมัครที่: https://console.groq.com
 GROQ_API_KEY=gsk_xxxxxxxxxxxxxxxxxxxx
 
 # OpenRouter — สรุปด้วย LLM (ฟรีบางโมเดล)
 # สมัครที่: https://openrouter.ai/keys
 OPENROUTER_API_KEY=sk-or-v1-xxxxxxxxxxxx
-
-# Google Gemini — ทางเลือก (ถ้ามี)
-# สมัครที่: https://aistudio.google.com/apikey
-GEMINI_API_KEY=AIza-xxxxxxxxxxxx
 ```
 
-**4. รันแอป**
+### 4. รันแอป
 
 ```bash
 streamlit run app.py
 ```
 
-เปิดเบราว์เซอร์ที่ `http://localhost:8501`
+เปิด `http://localhost:8501`
 
-### ⚙️ การตั้งค่าใน Sidebar
+## วิธีใช้งาน
 
-**Speech-to-Text Engine**
+### ครั้งแรก
+1. กดปุ่ม Transcribe หรือ Summarize ใดก็ได้
+2. ถ้ายังไม่มี API Key → **Settings popup เด้งขึ้นอัตโนมัติ**
+3. ใส่ OpenRouter API Key และเลือกโมเดล
+4. กด **Save & Start** → เริ่มประมวลผลทันที
 
-| Engine | ความเร็ว | ต้องการ Internet | หมายเหตุ |
-|---|---|---|---|
-| **Groq API** ⭐ | ⚡⚡⚡⚡⚡ | ใช่ | ฟรี — เร็วกว่า CPU 10–50x |
-| **Local Whisper** | ⚡⚡ | ไม่ | Privacy สูงกว่า แต่ช้ากว่า |
+### Tab Audio
+- อัปโหลดไฟล์ `.mp3` หรือ `.wav`
+- กด **Transcribe & Summarize**
+- ดู transcript แบบ real-time ขณะประมวลผล
+- เปิด Report → ดู summary + keywords + download
 
-**โมเดล Groq ที่แนะนำ:** `whisper-large-v3-turbo`
+### Tab YouTube
+- วาง URL YouTube ใดก็ได้
+- กด **Download & Transcribe**
+- ดาวน์โหลดเสียงอัตโนมัติผ่าน yt-dlp
 
-**LLM Provider**
+### Tab History
+- ผลลัพธ์ทุกครั้งบันทึกอัตโนมัติ
+- ค้นหาจากชื่อไฟล์หรือเนื้อหา
+- กด **View** เพื่อเปิดรายงานเดิม
+- เพิ่ม **Tags** จัดหมวดหมู่
+- Download ย้อนหลังได้ตลอด
 
-| Provider | โมเดลที่แนะนำ | ฟรี |
-|---|---|---|
-| **OpenRouter** | `google/gemini-2.0-flash-001` | ✅ |
-| **Google Gemini** | `gemini-2.0-flash` | ✅ (ถ้าไม่ผูก Billing) |
+## ประมาณเวลาประมวลผล
 
-**รูปแบบสรุป**
-
-| รูปแบบ | เหมาะสำหรับ |
-|---|---|
-| 📋 รายงานการประชุมสมบูรณ์ | งานราชการ เอกสารทางการ |
-| ⚡ สรุปย่อประเด็นสำคัญ | ผู้บริหาร สื่อมวลชน |
-| 🏛️ วิเคราะห์การเมือง | นักวิชาการ นักวิเคราะห์ |
-| ✅ มติและ Action Items | ฝ่ายบริหาร ติดตามงาน |
-| 🎤 วิเคราะห์ผู้อภิปราย | นักข่าว นักวิจัย |
-| 📰 แถลงการณ์สื่อมวลชน | PR ประชาสัมพันธ์ |
-
-### 📊 ประมาณเวลาประมวลผล
-
-| ความยาวไฟล์ | Groq API | Local Whisper (small) |
+| ความยาว | Groq API | Local Whisper (small) |
 |---|---|---|
 | 10 นาที | ~15–30 วินาที | ~8 นาที |
 | 30 นาที | ~45–90 วินาที | ~25 นาที |
 | 60 นาที | ~2–3 นาที | ~50 นาที |
-| 120 นาที | ~4–6 นาที | ~100 นาที |
 
-> ไฟล์ใหญ่กว่า 25 MB ระบบจะแบ่ง chunk อัตโนมัติ
-
-### 🐛 ปัญหาที่พบบ่อย
+## ปัญหาที่พบบ่อย
 
 | ปัญหา | วิธีแก้ |
 |---|---|
 | `FFmpeg not found` | ติดตั้ง FFmpeg และเพิ่มใน PATH |
-| `Groq 413 File Too Large` | ติดตั้ง pydub: `pip install pydub` |
-| `OpenRouter 429` | ถึง rate limit — รอสักครู่หรือเปลี่ยนโมเดล |
-| `latin-1 codec error` | อัปเดตเป็น `summarizer.py` ล่าสุด |
-| Sidebar widgets หาย | อัปเดตเป็น `app.py` ล่าสุด |
+| `Groq 413 Too Large` | `pip install pydub` |
+| `OpenRouter 429` | ถึง rate limit — รอหรือเปลี่ยนโมเดล |
+| Dialog เปิดตอนลบ | ใช้ `app.py` เวอร์ชันล่าสุด |
 
-### 🔒 ความปลอดภัย
+## License
 
-- API Keys เก็บใน `.env` — **ห้าม commit ขึ้น Git เด็ดขาด**
-- ไฟล์เสียงที่อัปโหลดจะถูกลบออกหลังประมวลผลอัตโนมัติ
-- ไม่มีการเก็บข้อมูลถาวรในระบบ
-
-### 🛠️ Tech Stack
-
-| Layer | Technology |
-|---|---|
-| Frontend | [Streamlit](https://streamlit.io) |
-| STT (Cloud) | [Groq Whisper API](https://console.groq.com) |
-| STT (Local) | [Faster-Whisper](https://github.com/SYSTRAN/faster-whisper) |
-| LLM | [OpenRouter](https://openrouter.ai) / [Google Gemini](https://aistudio.google.com) |
-| YouTube | [yt-dlp](https://github.com/yt-dlp/yt-dlp) |
-| Audio | [FFmpeg](https://ffmpeg.org) / [pydub](https://github.com/jiaaro/pydub) |
-| Export | [python-docx](https://python-docx.readthedocs.io) |
-| Styling | Custom CSS — Parliament Dark Gold |
-
-### 📄 License
-
-MIT License — ใช้งานได้อิสระ ทั้งส่วนตัวและองค์กร
+MIT — ใช้งานได้อิสระ ทั้งส่วนตัวและองค์กร
 
 </details>
 
 ---
 
 <div align="center">
-  <sub>Built with ❤️ for Thai Democracy &nbsp;·&nbsp; 🏛️ Parliament AI</sub>
+  <sub>Built with ❤️ &nbsp;·&nbsp; Transcript AI</sub>
 </div>

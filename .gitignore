@@ -1,5 +1,94 @@
-# Exclusion list
-venv/
+# ══════════════════════════════════════════════════════
+#  Transcript AI — .gitignore
+# ══════════════════════════════════════════════════════
+
+# ── API Keys & Secrets ────────────────────────────────
 .env
+.env.*
+*.env
+secrets.toml
+.streamlit/secrets.toml
+
+# ── Database (local data) ─────────────────────────────
+history.db
+*.db
+*.sqlite
+*.sqlite3
+
+# ── Python ───────────────────────────────────────────
 __pycache__/
+*.py[cod]
+*$py.class
 *.pyc
+*.pyo
+*.pyd
+.Python
+
+# ── Virtual environments ──────────────────────────────
+venv/
+.venv/
+env/
+.env/
+ENV/
+venv.bak/
+
+# ── Distribution / Build ──────────────────────────────
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+MANIFEST
+
+# ── Temp & cache files ────────────────────────────────
+*.tmp
+*.temp
+*.log
+*.cache
+.cache/
+tmp/
+temp/
+
+# ── Audio temp files ──────────────────────────────────
+yt_audio.*
+*_chunk_*.mp3
+*_chunk_*.wav
+
+# ── ML model cache ────────────────────────────────────
+# Faster-Whisper downloads models here
+~/.cache/huggingface/
+.cache/huggingface/
+models/
+
+# ── OS files ─────────────────────────────────────────
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ── IDE ───────────────────────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.project
+.pydevproject
+
+# ── Jupyter ───────────────────────────────────────────
+.ipynb_checkpoints/
+*.ipynb
+
+# ── Streamlit ─────────────────────────────────────────
+.streamlit/
+# keep: .streamlit/config.toml (if you have one, remove this line)
+
+# ── Test & Coverage ───────────────────────────────────
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/

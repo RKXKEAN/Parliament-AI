@@ -1,31 +1,119 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Source+Sans+3:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap');
+
+/* ══════════════════════════════════════════════════════
+   TRANSCRIPT AI — Orange Cream Theme
+   ══════════════════════════════════════════════════════ */
 
 :root {
-    --gold: #c9a84c;
-    --gold-light: #e8cc7a;
-    --gold-dim: #8a6d2e;
-    --navy: #0b1120;
-    --navy-mid: #111b2e;
-    --navy-card: #152035;
-    --navy-hover: #1c2d47;
-    --border: rgba(201, 168, 76, 0.18);
-    --border-hi: rgba(201, 168, 76, 0.55);
-    --text: #d8dde8;
-    --text-dim: #7a8499;
-    --red: #e05252;
-    --green: #52b788;
+    /* ── Backgrounds ── */
+    --bg: #2a1f14;
+    /* ครีมอ่อน — พื้นหลักทั้งหน้า   */
+    --bg-panel: #231a0f;
+    /* ครีมเข้มขึ้นนิด — panel/sidebar */
+    --bg-card: #33261a;
+    /* การ์ด — ขาวครีม               */
+    --bg-input: #2e2015;
+    /* input field                   */
+    --bg-hover: #3d2d1c;
+    /* hover state                   */
+    --bg-accent: #3a2818;
+    /* accent area                   */
+
+    /* ── Borders ── */
+    --line: rgba(220, 150, 60, 0.20);
+    --line-hi: rgba(220, 150, 60, 0.35);
+    --line-focus: #e07b20;
+
+    /* ── Text — ออกน้ำตาลส้ม ทุกระดับ ── */
+    --text: #f0d9bf;
+    /* หลัก — น้ำตาลเข้ม             */
+    --text-dim: #c8975a;
+    /* รอง — น้ำตาลกลาง              */
+    --text-muted: #8a6040;
+    /* จาง — น้ำตาลอ่อน              */
+    --text-placeholder: #6a4830;
+
+    /* ── Orange Accent ── */
+    --orange: #f0913a;
+    /* ส้มหลัก                       */
+    --orange-dark: #c87828;
+    /* ส้มเข้ม (hover)               */
+    --orange-light: #f5b870;
+    /* ส้มอ่อน                       */
+    --orange-bg: #3a2818;
+    /* orange tint background        */
+    --orange-border: #8a5a28;
+    /* border สีทอง-ส้ม              */
+
+    /* ── Status ── */
+    --green: #3d7a3d;
+    --green-bg: #1a2e1a;
+    --green-border: #3a6a3a;
+    --red: #c0392b;
+    --red-bg: #2e1a1a;
+    --blue: #2c5f8a;
+    --blue-bg: #1a2030;
+
+    /* ── Typography ── */
+    --font-body: 'DM Sans', sans-serif;
+    --font-serif: 'Lora', Georgia, serif;
+    --font-mono: 'DM Mono', 'Fira Code', monospace;
+
+    --radius: 8px;
+    --radius-lg: 14px;
+    --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.30);
+    --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.40);
+    --shadow-lg: 0 12px 36px rgba(0, 0, 0, 0.50);
 }
 
+/* ── Global ──────────────────────────────────────────── */
 html,
 body,
 [data-testid="stAppViewContainer"],
 [data-testid="stMain"],
 .main {
-    background: var(--navy) !important;
+    background-color: #2a1f14 !important;
+    background-image:
+        /* blob บนซ้าย */
+        radial-gradient(ellipse 70% 55% at 0% 0%,
+            rgba(180, 90, 20, 0.22) 0%, transparent 65%),
+        /* blob กลางขวา */
+        radial-gradient(ellipse 50% 40% at 100% 45%,
+            rgba(200, 120, 40, 0.18) 0%, transparent 60%),
+        /* blob ล่างซ้าย */
+        radial-gradient(ellipse 55% 45% at 15% 100%,
+            rgba(160, 90, 30, 0.20) 0%, transparent 60%),
+        /* diagonal stripe เฉียง */
+        repeating-linear-gradient(135deg,
+            transparent,
+            transparent 22px,
+            rgba(200, 130, 50, 0.06) 22px,
+            rgba(200, 130, 50, 0.06) 23px) !important;
+    color: var(--text) !important;
+}
+
+/* grain overlay ชัดขึ้นใช้ pseudo element บน body */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.038;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
 }
 
 * {
-    font-family: 'Source Sans 3', sans-serif !important;
+    font-family: var(--font-body) !important;
+    color: var(--text);
+}
+
+p,
+li,
+span,
+div {
+    color: var(--text) !important;
 }
 
 #MainMenu,
@@ -37,7 +125,6 @@ footer {
     display: none;
 }
 
-/* ซ่อน header background ยกเว้น sidebar toggle */
 header {
     background: transparent !important;
     border: none !important;
@@ -51,212 +138,141 @@ header {
     display: none !important;
 }
 
-/* Sidebar toggle button — collapsed state (ลูกศรเล็กๆ ด้านซ้าย) */
-[data-testid="stSidebarCollapsedControl"],
-[data-testid="collapsedControl"] {
-    top: 1rem !important;
-    left: .5rem !important;
-}
-
-[data-testid="stSidebarCollapsedControl"] button,
-[data-testid="collapsedControl"] button {
-    background: var(--navy-card) !important;
-    border: 1px solid var(--border-hi) !important;
-    border-radius: 4px !important;
-    color: var(--gold) !important;
-    width: 2rem !important;
-    height: 2rem !important;
-    transition: all .2s !important;
-}
-
-[data-testid="stSidebarCollapsedControl"] button:hover,
-[data-testid="collapsedControl"] button:hover {
-    background: var(--navy-hover) !important;
-    border-color: var(--gold) !important;
-    box-shadow: 0 0 12px rgba(201, 168, 76, .35) !important;
-}
-
-[data-testid="stSidebarCollapsedControl"] svg,
-[data-testid="collapsedControl"] svg {
-    fill: var(--gold) !important;
-    stroke: var(--gold) !important;
-}
-
-/* Sidebar expand button inside header (hamburger icon) */
-button[data-testid="baseButton-header"],
-header button {
-    background: var(--navy-card) !important;
-    border: 1px solid var(--border-hi) !important;
-    border-radius: 4px !important;
-    color: var(--gold) !important;
-}
-
-button[data-testid="baseButton-header"]:hover,
-header button:hover {
-    background: var(--navy-hover) !important;
-    box-shadow: 0 0 12px rgba(201, 168, 76, .35) !important;
-}
-
-button[data-testid="baseButton-header"] svg,
-header button svg {
-    fill: var(--gold) !important;
-    color: var(--gold) !important;
-}
-
-/* HEADER */
-.parl-header {
+/* ── HEADER ──────────────────────────────────────────── */
+.app-header {
+    padding: 2rem 0 0.8rem;
+    margin-bottom: 0.6rem;
+    border-bottom: none;
+    background: linear-gradient(to bottom,
+            rgba(224, 123, 32, 0.04) 0%,
+            transparent 100%);
+    border-radius: var(--radius-lg);
+    padding: 1.4rem 1.6rem 1rem;
+    margin-bottom: 1rem;
     position: relative;
-    background: linear-gradient(135deg, #0d1829, #162240, #0d1829);
-    border: 1px solid var(--border-hi);
-    border-radius: 4px;
-    padding: 2.2rem 3rem 1.8rem;
-    margin-bottom: 2rem;
-    overflow: hidden;
-    text-align: center;
 }
 
-.parl-header::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(201, 168, 76, .03) 60px, rgba(201, 168, 76, .03) 61px),
-        repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(201, 168, 76, .03) 60px, rgba(201, 168, 76, .03) 61px);
-    pointer-events: none;
-}
-
-.parl-header::after {
+.app-header::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 10%;
-    right: 10%;
+    left: 1.6rem;
+    right: 1.6rem;
     height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    background: linear-gradient(90deg, var(--orange-border), transparent);
 }
 
-.parl-crown {
-    font-size: 2.4rem;
-    margin-bottom: .4rem;
-    filter: drop-shadow(0 0 12px rgba(201, 168, 76, .6));
+.app-header-left {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    flex-wrap: nowrap;
 }
 
-.parl-title {
-    font-family: 'Cinzel', serif !important;
-    font-size: clamp(1.3rem, 3vw, 2rem);
-    font-weight: 700;
-    color: var(--gold-light);
-    letter-spacing: .06em;
-    margin: 0;
-    text-shadow: 0 0 30px rgba(201, 168, 76, .4);
-}
-
-.parl-subtitle {
-    font-size: .82rem;
-    color: var(--gold-dim);
-    letter-spacing: .18em;
-    text-transform: uppercase;
-    margin-top: .5rem;
-}
-
-.parl-divider {
-    width: 120px;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    margin: .9rem auto 0;
-}
-
-/* SIDEBAR */
-[data-testid="stSidebar"] {
-    background: var(--navy-mid) !important;
-    border-right: 1px solid var(--border) !important;
-}
-
-[data-testid="stSidebar"] * {
+.app-logo {
+    font-family: var(--font-serif) !important;
+    font-size: 1.75rem;
+    font-weight: 600;
     color: var(--text) !important;
+    letter-spacing: -0.03em;
+    white-space: nowrap;
+    text-shadow: 0 1px 2px rgba(140, 70, 10, 0.08);
 }
 
-.sidebar-section-title {
-    font-family: 'Cinzel', serif !important;
-    font-size: .7rem !important;
-    letter-spacing: .2em;
-    text-transform: uppercase;
-    color: var(--gold) !important;
-    padding: .6rem 0 .3rem;
-    border-top: 1px solid var(--border);
-    margin-top: .5rem;
+.app-logo span {
+    color: var(--orange) !important;
 }
 
-[data-testid="stSidebar"] label {
-    color: var(--text-dim) !important;
-    font-size: .82rem !important;
+.app-tagline {
+    font-size: 0.84rem;
+    color: var(--text-muted) !important;
+    font-weight: 300;
+    white-space: nowrap;
 }
 
-[data-testid="stSidebar"] .stSelectbox>div>div,
-[data-testid="stSidebar"] .stTextInput>div>div>input {
-    background: var(--navy) !important;
-    border: 1px solid var(--border) !important;
-    color: var(--text) !important;
-    border-radius: 3px !important;
+/* ── Action buttons row ──────────────────────────────── */
+.stHorizontalBlock:has(> div:nth-child(3)) .stButton>button {
+    font-size: 0.8rem !important;
+    padding: 0.35rem 0.8rem !important;
+    white-space: nowrap !important;
 }
 
-/* TABS */
+/* ── TABS ────────────────────────────────────────────── */
 [data-testid="stTabs"] [role="tablist"] {
-    border-bottom: 1px solid var(--border) !important;
+    border-bottom: 1px solid var(--line) !important;
+    background: transparent !important;
 }
 
 [data-testid="stTabs"] [role="tab"] {
-    font-family: 'Cinzel', serif !important;
-    font-size: .78rem !important;
-    letter-spacing: .12em;
-    color: var(--text-dim) !important;
+    font-size: 0.84rem !important;
+    color: var(--text-muted) !important;
     background: transparent !important;
     border: none !important;
-    padding: .7rem 1.4rem !important;
+    padding: 0.65rem 1.2rem !important;
     border-bottom: 2px solid transparent !important;
+    transition: color 0.15s !important;
 }
 
 [data-testid="stTabs"] [role="tab"]:hover {
-    color: var(--gold) !important;
+    color: var(--text-dim) !important;
 }
 
 [data-testid="stTabs"] [role="tab"][aria-selected="true"] {
-    color: var(--gold) !important;
-    border-bottom-color: var(--gold) !important;
+    color: var(--orange) !important;
+    border-bottom-color: var(--orange) !important;
+    font-weight: 500 !important;
 }
 
-/* CARDS */
-.parl-card {
-    background: var(--navy-card);
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 1.4rem 1.6rem;
-    margin-bottom: 1rem;
-}
-
-.parl-card-title {
-    font-family: 'Cinzel', serif !important;
-    font-size: .72rem;
-    letter-spacing: .18em;
+/* ── SECTION LABEL ───────────────────────────────────── */
+.section-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 1rem;
-    padding-bottom: .5rem;
-    border-bottom: 1px solid var(--border);
+    color: var(--orange) !important;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
 }
 
-/* TRANSCRIPT BOX */
+.section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--orange-border), transparent);
+}
+
+/* ── CARDS ───────────────────────────────────────────── */
+.app-card {
+    background: var(--bg-card);
+    border: 1px solid var(--orange-border);
+    border-top: 3px solid var(--orange-border);
+    border-radius: var(--radius-lg);
+    padding: 1.4rem 1.6rem;
+    margin-bottom: 0.8rem;
+    box-shadow: var(--shadow-sm);
+    position: relative;
+}
+
+.app-card p,
+.app-card span {
+    color: var(--text-dim) !important;
+}
+
+/* ── TRANSCRIPT BOX ──────────────────────────────────── */
 .transcript-box {
-    background: #0a1018;
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--gold-dim);
-    border-radius: 3px;
-    padding: 1.2rem;
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--orange-light);
+    border-radius: var(--radius);
+    padding: 1.2rem 1.4rem;
     max-height: 420px;
     overflow-y: auto;
-    font-family: 'SF Mono', 'Fira Code', monospace !important;
-    font-size: .82rem;
-    color: #9fb8d8;
-    line-height: 1.8;
+    font-family: var(--font-mono) !important;
+    font-size: 0.82rem;
+    color: var(--text-dim) !important;
+    line-height: 2;
     white-space: pre-wrap;
     word-break: break-word;
 }
@@ -266,224 +282,1119 @@ header button svg {
 }
 
 .transcript-box::-webkit-scrollbar-thumb {
-    background: var(--border-hi);
+    background: var(--orange-border);
     border-radius: 2px;
 }
 
-/* SUMMARY BOX */
+/* ── SUMMARY BOX ─────────────────────────────────────── */
 .summary-box {
-    background: linear-gradient(135deg, #0f1c10, #0d1a1f);
-    border: 1px solid rgba(82, 183, 136, .25);
+    background: var(--bg-card);
+    border: 1px solid var(--green-border);
     border-left: 3px solid var(--green);
-    border-radius: 3px;
-    padding: 1.4rem 1.6rem;
+    border-radius: var(--radius);
+    padding: 1.4rem 1.8rem;
+    font-size: 0.91rem;
+    line-height: 1.9;
+    color: var(--text) !important;
     white-space: pre-wrap;
-    font-size: .9rem;
-    line-height: 1.85;
-    color: #b8d4c0;
+    box-shadow: var(--shadow-sm);
 }
 
-/* PROGRESS */
-[data-testid="stProgress"]>div>div {
-    background: linear-gradient(90deg, var(--gold-dim), var(--gold)) !important;
-    border-radius: 2px !important;
+.summary-box * {
+    color: var(--text) !important;
 }
 
-/* BUTTONS */
-.stButton>button[kind="primary"] {
-    background: linear-gradient(135deg, #7a5a1e, var(--gold)) !important;
-    color: var(--navy) !important;
-    font-family: 'Cinzel', serif !important;
-    font-size: .78rem !important;
-    letter-spacing: .1em;
-    border: none !important;
-    border-radius: 3px !important;
-    font-weight: 700 !important;
-}
-
-.stButton>button[kind="primary"]:hover {
-    background: linear-gradient(135deg, var(--gold), var(--gold-light)) !important;
-    transform: translateY(-1px) !important;
-    box-shadow: 0 4px 16px rgba(201, 168, 76, .35) !important;
-}
-
-/* RESULT BUTTON — special gold outline */
+/* ── RESULT BUTTON ───────────────────────────────────── */
 .result-btn .stButton>button {
-    background: var(--navy-card) !important;
-    color: var(--gold-light) !important;
-    border: 1px solid var(--border-hi) !important;
-    border-radius: 3px !important;
-    font-family: 'Cinzel', serif !important;
-    font-size: .78rem !important;
-    letter-spacing: .1em;
-    padding: .6rem 1.4rem !important;
-    width: 100%;
-    transition: all .2s !important;
+    background: var(--orange-bg) !important;
+    color: var(--orange) !important;
+    border: 1.5px solid var(--orange-border) !important;
+    border-radius: var(--radius) !important;
+    font-size: 0.84rem !important;
+    font-weight: 500 !important;
+    box-shadow: var(--shadow-sm) !important;
+    transition: all 0.15s !important;
 }
 
 .result-btn .stButton>button:hover {
-    background: var(--navy-hover) !important;
-    border-color: var(--gold) !important;
-    box-shadow: 0 0 18px rgba(201, 168, 76, .25) !important;
+    background: var(--bg-hover) !important;
+    border-color: var(--orange) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+/* ── BUTTONS — primary ───────────────────────────────── */
+.stButton>button[kind="primary"] {
+    background: var(--orange) !important;
+    color: #fff9f2 !important;
+    font-weight: 600 !important;
+    border: none !important;
+    border-radius: var(--radius) !important;
+    box-shadow: 0 2px 8px rgba(224, 123, 32, 0.35) !important;
+    transition: all 0.15s !important;
+}
+
+.stButton>button[kind="primary"]:hover {
+    background: var(--orange-dark) !important;
+    box-shadow: 0 4px 16px rgba(224, 123, 32, 0.45) !important;
     transform: translateY(-1px) !important;
 }
 
-/* DOWNLOAD BUTTONS */
+/* ── BUTTONS — secondary ─────────────────────────────── */
+.stButton>button:not([kind="primary"]) {
+    background: var(--bg-card) !important;
+    color: var(--text-dim) !important;
+    border: 1px solid var(--line-hi) !important;
+    border-radius: var(--radius) !important;
+    box-shadow: var(--shadow-sm) !important;
+    transition: all 0.15s !important;
+}
+
+.stButton>button:not([kind="primary"]):hover {
+    background: var(--bg-hover) !important;
+    border-color: var(--orange) !important;
+    color: var(--orange) !important;
+}
+
+/* ── DOWNLOAD BUTTONS ────────────────────────────────── */
 .stDownloadButton>button {
-    background: var(--navy-card) !important;
-    color: var(--gold) !important;
-    border: 1px solid var(--border-hi) !important;
-    border-radius: 3px !important;
-    font-size: .8rem !important;
+    background: var(--bg-card) !important;
+    color: var(--text-dim) !important;
+    border: 1px solid var(--line-hi) !important;
+    border-radius: var(--radius) !important;
+    box-shadow: var(--shadow-sm) !important;
+    transition: all 0.15s !important;
 }
 
 .stDownloadButton>button:hover {
-    background: var(--navy-hover) !important;
-    border-color: var(--gold) !important;
+    background: var(--bg-hover) !important;
+    border-color: var(--orange) !important;
+    color: var(--orange) !important;
 }
 
-/* FILE UPLOADER */
-[data-testid="stFileUploader"] {
-    background: var(--navy-card) !important;
-    border: 1px dashed var(--border-hi) !important;
+/* ── PROGRESS BAR ────────────────────────────────────── */
+[data-testid="stProgress"]>div>div {
+    background: linear-gradient(90deg, var(--orange-light), var(--orange)) !important;
     border-radius: 4px !important;
 }
 
-/* TEXT INPUT / AREA */
+[data-testid="stProgress"] {
+    background: var(--bg-panel) !important;
+    border-radius: 4px !important;
+}
+
+/* ── FILE UPLOADER ───────────────────────────────────── */
+[data-testid="stFileUploader"],
+[data-testid="stFileUploader"]>div,
+[data-testid="stFileUploaderDropzone"] {
+    background: var(--bg-card) !important;
+    border: 2px dashed var(--orange-border) !important;
+    border-radius: var(--radius-lg) !important;
+}
+
+[data-testid="stFileUploader"]:hover,
+[data-testid="stFileUploaderDropzone"]:hover {
+    border-color: var(--orange) !important;
+    background: var(--orange-bg) !important;
+}
+
+/* ไอคอน upload */
+[data-testid="stFileUploaderDropzone"] svg {
+    fill: var(--orange-light) !important;
+    color: var(--orange-light) !important;
+}
+
+/* ข้อความทั้งหมดใน dropzone */
+[data-testid="stFileUploaderDropzoneInstructions"],
+[data-testid="stFileUploaderDropzoneInstructions"] *,
+[data-testid="stFileUploaderDropzone"] span,
+[data-testid="stFileUploaderDropzone"] small,
+[data-testid="stFileUploaderDropzone"] p {
+    color: var(--text-muted) !important;
+    background: transparent !important;
+}
+
+/* ปุ่ม Browse files */
+[data-testid="stFileUploaderDropzone"] button,
+[data-testid="stBaseButton-secondary"] {
+    background: var(--bg-hover) !important;
+    color: var(--orange) !important;
+    border: 1px solid var(--orange-border) !important;
+    border-radius: var(--radius) !important;
+}
+
+[data-testid="stFileUploaderDropzone"] button:hover {
+    background: var(--orange-bg) !important;
+    border-color: var(--orange) !important;
+}
+
+/* ── TEXT INPUT / AREA ───────────────────────────────── */
 .stTextInput>div>div>input,
 .stTextArea textarea {
-    background: var(--navy-card) !important;
-    border: 1px solid var(--border) !important;
+    background: var(--bg-input) !important;
+    border: 1px solid var(--line-hi) !important;
     color: var(--text) !important;
-    border-radius: 3px !important;
+    border-radius: var(--radius) !important;
+    font-size: 0.86rem !important;
+    box-shadow: var(--shadow-sm) !important;
+}
+
+.stTextInput>div>div>input::placeholder,
+.stTextArea textarea::placeholder {
+    color: var(--text-placeholder) !important;
 }
 
 .stTextInput>div>div>input:focus,
 .stTextArea textarea:focus {
-    border-color: var(--gold) !important;
+    border-color: var(--orange) !important;
+    box-shadow: 0 0 0 3px rgba(224, 123, 32, 0.15) !important;
 }
 
-/* ALERTS */
+.stTextArea textarea {
+    font-family: var(--font-mono) !important;
+    line-height: 1.8 !important;
+}
+
+/* ── SELECT BOX ──────────────────────────────────────── */
+.stSelectbox>div>div {
+    background: var(--bg-input) !important;
+    border: 1px solid var(--line-hi) !important;
+    border-radius: var(--radius) !important;
+    color: var(--text) !important;
+    font-size: 0.85rem !important;
+}
+
+.stSelectbox>div>div:focus-within {
+    border-color: var(--orange) !important;
+    box-shadow: 0 0 0 3px rgba(224, 123, 32, 0.15) !important;
+}
+
+.stSelectbox svg {
+    color: var(--text-muted) !important;
+    fill: var(--text-muted) !important;
+}
+
+/* ── LABEL ───────────────────────────────────────────── */
+label,
+.stSelectbox label,
+.stTextInput label,
+.stTextArea label,
+.stSlider label,
+.stCheckbox label {
+    color: var(--text-dim) !important;
+    font-size: 0.83rem !important;
+}
+
+/* ── SLIDER ──────────────────────────────────────────── */
+.stSlider [role="slider"] {
+    background: var(--orange) !important;
+    border-color: var(--orange) !important;
+}
+
+/* ── CHECKBOX ────────────────────────────────────────── */
+.stCheckbox label {
+    color: var(--text-dim) !important;
+}
+
+.stCheckbox input:checked+label::before {
+    background: var(--orange) !important;
+    border-color: var(--orange) !important;
+}
+
+/* ── RADIO ───────────────────────────────────────────── */
+.stRadio label {
+    color: var(--text-dim) !important;
+    font-size: 0.85rem !important;
+}
+
+/* ── ALERTS ──────────────────────────────────────────── */
 [data-testid="stSuccess"] {
-    background: rgba(82, 183, 136, .08) !important;
-    border-color: var(--green) !important;
+    background: var(--green-bg) !important;
+    border: 1px solid var(--green-border) !important;
+    border-radius: var(--radius) !important;
+}
+
+[data-testid="stSuccess"] * {
+    color: var(--green) !important;
 }
 
 [data-testid="stWarning"] {
-    background: rgba(201, 168, 76, .08) !important;
-    border-color: var(--gold-dim) !important;
+    background: var(--orange-bg) !important;
+    border: 1px solid var(--orange-border) !important;
+    border-radius: var(--radius) !important;
+}
+
+[data-testid="stWarning"] * {
+    color: var(--orange-dark) !important;
 }
 
 [data-testid="stError"] {
-    background: rgba(224, 82, 82, .08) !important;
-    border-color: var(--red) !important;
+    background: var(--red-bg) !important;
+    border: 1px solid #f5b8b0 !important;
+    border-radius: var(--radius) !important;
 }
 
-/* EXPANDER */
+[data-testid="stError"] * {
+    color: var(--red) !important;
+}
+
+[data-testid="stInfo"] {
+    background: var(--blue-bg) !important;
+    border: 1px solid #b8d0e8 !important;
+    border-radius: var(--radius) !important;
+}
+
+[data-testid="stInfo"] * {
+    color: var(--blue) !important;
+}
+
+/* ── EXPANDER ────────────────────────────────────────── */
 [data-testid="stExpander"] {
-    background: var(--navy-card) !important;
-    border: 1px solid var(--border) !important;
-    border-radius: 4px !important;
+    background: var(--bg-card) !important;
+    border: 1px solid var(--line) !important;
+    border-radius: var(--radius) !important;
+    box-shadow: var(--shadow-sm) !important;
 }
 
 [data-testid="stExpander"] summary {
-    color: var(--gold) !important;
-    font-size: .85rem !important;
+    color: var(--text-dim) !important;
+    font-size: 0.85rem !important;
+    font-weight: 500 !important;
 }
 
-/* MODAL OVERLAY */
-.modal-overlay {
-    position: fixed;
-    inset: 0;
-    background: rgba(5, 10, 20, .85);
-    backdrop-filter: blur(6px);
-    z-index: 9998;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    padding: 2rem 1rem;
-    overflow-y: auto;
+[data-testid="stExpander"] summary:hover {
+    color: var(--orange) !important;
 }
 
-.modal-box {
-    background: var(--navy-mid);
-    border: 1px solid var(--border-hi);
-    border-radius: 8px;
+/* ── DIALOG / MODAL ──────────────────────────────────── */
+[role="dialog"] {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--orange-border) !important;
+    border-radius: var(--radius-lg) !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+[role="dialog"] * {
+    color: var(--text) !important;
+}
+
+/* ── CAPTION ─────────────────────────────────────────── */
+.stCaption,
+.stCaption * {
+    color: var(--text-muted) !important;
+    font-size: 0.77rem !important;
+}
+
+/* ── MARKDOWN ────────────────────────────────────────── */
+.stMarkdown p,
+.stMarkdown li,
+[data-testid="stMarkdownContainer"] p,
+[data-testid="stMarkdownContainer"] li {
+    color: var(--text-dim) !important;
+    font-size: 0.88rem;
+    line-height: 1.75;
+}
+
+[data-testid="stMarkdownContainer"] h1,
+[data-testid="stMarkdownContainer"] h2,
+[data-testid="stMarkdownContainer"] h3 {
+    color: var(--text) !important;
+    font-family: var(--font-serif) !important;
+}
+
+[data-testid="stMarkdownContainer"] strong {
+    color: var(--text) !important;
+    font-weight: 600;
+}
+
+[data-testid="stMarkdownContainer"] a {
+    color: var(--orange) !important;
+    text-decoration: underline;
+    text-decoration-color: var(--orange-border);
+}
+
+/* ── AUDIO PLAYER ────────────────────────────────────── */
+audio {
+    border-radius: var(--radius) !important;
+    width: 100% !important;
+}
+
+/* ── SCROLLBAR ───────────────────────────────────────── */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-panel);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--orange-border);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--orange-light);
+}
+
+/* ── CONTAINER max-width ─────────────────────────────── */
+[data-testid="stMainBlockContainer"] {
+    padding-top: 0.8rem !important;
+    max-width: 1100px !important;
+}
+
+/* ── SPINNER ─────────────────────────────────────────── */
+.stSpinner>div {
+    border-top-color: var(--orange) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   DROPDOWN LIST (BaseWeb Popover)
+   ══════════════════════════════════════════════════════ */
+
+/* container กล่อง dropdown */
+[data-baseweb="popover"],
+[data-baseweb="menu"],
+[data-baseweb="select"] [role="listbox"],
+ul[data-baseweb="menu"] {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--orange-border) !important;
+    border-radius: var(--radius) !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+/* แต่ละ option */
+[data-baseweb="menu"] li,
+[data-baseweb="menu"] [role="option"],
+[data-baseweb="option"] {
+    background: var(--bg-card) !important;
+    color: var(--text-dim) !important;
+    font-size: 0.85rem !important;
+}
+
+/* option hover */
+[data-baseweb="menu"] li:hover,
+[data-baseweb="menu"] [role="option"]:hover,
+[data-baseweb="option"]:hover {
+    background: var(--bg-hover) !important;
+    color: var(--orange) !important;
+}
+
+/* option ที่ถูกเลือกอยู่ (highlighted) */
+[data-baseweb="menu"] li[aria-selected="true"],
+[data-baseweb="option"][aria-selected="true"],
+[data-baseweb="menu"] li.highlighted,
+[data-baseweb="menu"] [data-highlighted="true"] {
+    background: var(--orange-bg) !important;
+    color: var(--orange) !important;
+}
+
+/* ข้อความใน select box (ค่าที่เลือก) */
+[data-baseweb="select"] [data-testid="stSelectboxVirtualDropdown"],
+[data-baseweb="select"] span,
+[data-baseweb="select"] div[class*="valueContainer"] span,
+[data-baseweb="select"] div[class*="singleValue"] {
+    color: var(--text) !important;
+    background: transparent !important;
+}
+
+/* ไอคอนลูกศรใน select */
+[data-baseweb="select"] svg {
+    fill: var(--text-muted) !important;
+    color: var(--text-muted) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   PASSWORD FIELD — ไอคอนรูปตา (show/hide)
+   ══════════════════════════════════════════════════════ */
+
+/* wrapper ของ password input */
+[data-testid="stTextInput"] [data-baseweb="input"],
+[data-baseweb="input"] {
+    background: var(--bg-input) !important;
+    border-color: var(--line-hi) !important;
+}
+
+/* ปุ่มรูปตา */
+[data-testid="stTextInput"] button,
+[data-baseweb="input"] button {
+    background: transparent !important;
+    border: none !important;
+    color: var(--text-muted) !important;
+    box-shadow: none !important;
+}
+
+[data-testid="stTextInput"] button:hover,
+[data-baseweb="input"] button:hover {
+    background: var(--bg-hover) !important;
+    color: var(--orange) !important;
+    border-radius: 4px !important;
+}
+
+/* ไอคอน SVG ในปุ่มตา */
+[data-testid="stTextInput"] button svg,
+[data-baseweb="input"] button svg {
+    fill: var(--text-muted) !important;
+    color: var(--text-muted) !important;
+}
+
+[data-testid="stTextInput"] button:hover svg,
+[data-baseweb="input"] button:hover svg {
+    fill: var(--orange) !important;
+    color: var(--orange) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   MODAL DIALOG — ทุก element ข้างใน
+   ══════════════════════════════════════════════════════ */
+[role="dialog"] {
+    background: var(--bg-card) !important;
+}
+
+[role="dialog"] [data-baseweb="popover"],
+[role="dialog"] [data-baseweb="menu"] {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--orange-border) !important;
+}
+
+[role="dialog"] label {
+    color: var(--text-dim) !important;
+}
+
+[role="dialog"] [data-baseweb="select"]>div {
+    background: var(--bg-input) !important;
+    border-color: var(--line-hi) !important;
+}
+
+[role="dialog"] [data-baseweb="input"]>div {
+    background: var(--bg-input) !important;
+    border-color: var(--line-hi) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   DROPDOWN PORTAL — Streamlit render นอก DOM หลัก
+   ══════════════════════════════════════════════════════ */
+
+/* container ที่ Streamlit เปิด dropdown */
+[data-baseweb="popover"],
+[data-baseweb="menu"],
+ul[role="listbox"],
+[data-baseweb="select"] [data-baseweb="popover"] {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--orange-border) !important;
+    border-radius: var(--radius) !important;
+    box-shadow: var(--shadow-lg) !important;
+}
+
+/* option แต่ละรายการ */
+[role="option"],
+li[role="option"],
+[data-baseweb="menu"] li,
+[data-baseweb="menu"] [role="option"] {
+    background: var(--bg-card) !important;
+    color: var(--text) !important;
+    font-size: 0.85rem !important;
+}
+
+/* hover option */
+[role="option"]:hover,
+li[role="option"]:hover,
+[data-baseweb="menu"] [role="option"]:hover,
+[aria-selected="false"]:hover {
+    background: var(--bg-hover) !important;
+    color: var(--orange) !important;
+}
+
+/* option ที่ถูกเลือกอยู่ */
+[aria-selected="true"],
+[role="option"][aria-selected="true"] {
+    background: var(--orange-bg) !important;
+    color: var(--orange) !important;
+    font-weight: 500 !important;
+}
+
+/* selectbox value ที่แสดงใน input */
+[data-baseweb="select"] [data-testid="stMarkdownContainer"],
+[data-baseweb="select"] span,
+[data-baseweb="select"] div {
+    color: var(--text) !important;
+    background: transparent !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   PASSWORD EYE BUTTON — ไม่ overlap ตัวอักษร
+   ══════════════════════════════════════════════════════ */
+
+/* container ของ text input ให้มี padding ขวาพอ */
+[data-testid="stTextInput"] [data-baseweb="input"],
+.stTextInput [data-baseweb="input"] {
+    background: var(--bg-input) !important;
+    border: 1px solid var(--line-hi) !important;
+    border-radius: var(--radius) !important;
+}
+
+/* input field เว้นที่ให้ปุ่มตา */
+[data-testid="stTextInput"] input[type="password"],
+[data-testid="stTextInput"] input[type="text"] {
+    padding-right: 2.8rem !important;
+    background: var(--bg-input) !important;
+    color: var(--text) !important;
+}
+
+/* ปุ่มตา (toggle password visibility) */
+[data-testid="stTextInput"] button,
+[data-baseweb="input"] button {
+    background: transparent !important;
+    border: none !important;
+    color: var(--text-muted) !important;
+    position: absolute !important;
+    right: 0.5rem !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    padding: 0.2rem !important;
+    z-index: 10 !important;
+}
+
+[data-testid="stTextInput"] button:hover,
+[data-baseweb="input"] button:hover {
+    color: var(--orange) !important;
+    background: transparent !important;
+}
+
+[data-testid="stTextInput"] button svg,
+[data-baseweb="input"] button svg {
+    width: 1rem !important;
+    height: 1rem !important;
+    fill: currentColor !important;
+}
+
+/* wrapper ต้องเป็น relative */
+[data-baseweb="input"] {
+    position: relative !important;
+    background: var(--bg-input) !important;
+    border-radius: var(--radius) !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   ENHANCEMENTS — Subtle polish, stays minimal
+   ══════════════════════════════════════════════════════ */
+
+/* grain moved to body::after */
+
+/* ── 2. Logo — animated warm underline on hover ──────── */
+.app-logo {
+    position: relative;
+    display: inline-block;
+    transition: color 0.2s;
+}
+
+.app-logo::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--orange), var(--orange-light));
+    border-radius: 2px;
+    transition: width 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.app-logo:hover::after {
     width: 100%;
-    max-width: 900px;
-    box-shadow: 0 24px 80px rgba(0, 0, 0, .7),
-        0 0 0 1px rgba(201, 168, 76, .1);
-    animation: modalIn .25s ease-out;
 }
 
-@keyframes modalIn {
+/* ── 3. Card hover lift ──────────────────────────────── */
+.app-card {
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.app-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md) !important;
+}
+
+/* ── 4. Section label — dot accent ──────────────────── */
+.section-label::before {
+    content: '';
+    display: inline-block;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--orange);
+    margin-right: 0.4rem;
+    flex-shrink: 0;
+}
+
+/* ── 5. Progress bar — shimmer ───────────────────────── */
+@keyframes shimmer {
+    0% {
+        background-position: -200% center;
+    }
+
+    100% {
+        background-position: 200% center;
+    }
+}
+
+[data-testid="stProgress"]>div>div {
+    background: linear-gradient(90deg,
+            var(--orange-light) 0%,
+            var(--orange) 40%,
+            var(--orange-light) 60%,
+            var(--orange) 100%) !important;
+    background-size: 200% auto !important;
+    animation: shimmer 2s linear infinite !important;
+}
+
+/* ── 6. Primary button — press effect ───────────────── */
+.stButton>button[kind="primary"]:active {
+    transform: translateY(1px) scale(0.98) !important;
+    box-shadow: 0 1px 4px rgba(224, 123, 32, 0.2) !important;
+}
+
+/* ── 7. Tabs — sliding indicator ────────────────────── */
+[data-testid="stTabs"] [role="tab"] {
+    position: relative;
+    transition: color 0.2s !important;
+}
+
+[data-testid="stTabs"] [role="tab"]::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    right: 50%;
+    height: 2px;
+    background: var(--orange);
+    border-radius: 2px 2px 0 0;
+    transition: left 0.25s ease, right 0.25s ease;
+}
+
+[data-testid="stTabs"] [role="tab"][aria-selected="true"]::after {
+    left: 8%;
+    right: 8%;
+}
+
+/* ── 8. Metric cards — warm border top ──────────────── */
+[data-testid="stMetric"] {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--line) !important;
+    border-top: 3px solid var(--orange-border) !important;
+    border-radius: var(--radius) !important;
+    padding: 1rem 1.2rem !important;
+    box-shadow: var(--shadow-sm) !important;
+    transition: border-top-color 0.2s, box-shadow 0.2s;
+}
+
+[data-testid="stMetric"]:hover {
+    border-top-color: var(--orange) !important;
+    box-shadow: var(--shadow-md) !important;
+}
+
+[data-testid="stMetricLabel"] {
+    font-size: 0.72rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+    color: var(--text-muted) !important;
+}
+
+[data-testid="stMetricValue"] {
+    font-family: var(--font-serif) !important;
+    font-size: 1.6rem !important;
+    font-weight: 600 !important;
+    color: var(--text) !important;
+}
+
+/* ── 9. Summary box — fade-in animation ─────────────── */
+@keyframes fadeUp {
     from {
         opacity: 0;
-        transform: translateY(-20px)
+        transform: translateY(10px);
     }
 
     to {
         opacity: 1;
-        transform: translateY(0)
+        transform: translateY(0);
     }
 }
 
-.modal-header {
+.summary-box {
+    animation: fadeUp 0.4s ease-out;
+}
+
+/* ── 10. Transcript box — line highlight on hover ────── */
+.transcript-box:hover {
+    border-left-color: var(--orange-light) !important;
+    box-shadow: inset 3px 0 0 var(--orange-light) !important;
+    transition: border-left-color 0.2s, box-shadow 0.2s;
+}
+
+/* ── 11. File uploader — dashed pulse animation ──────── */
+@keyframes dashPulse {
+
+    0%,
+    100% {
+        border-color: var(--orange-border);
+    }
+
+    50% {
+        border-color: var(--orange-light);
+    }
+}
+
+[data-testid="stFileUploaderDropzone"]:not(:hover) {
+    animation: dashPulse 3s ease-in-out infinite;
+}
+
+/* ── 12. Expander — smooth open/close ───────────────── */
+[data-testid="stExpander"] {
+    transition: box-shadow 0.2s !important;
+}
+
+[data-testid="stExpander"]:hover {
+    box-shadow: var(--shadow-md) !important;
+}
+
+[data-testid="stExpander"] summary:hover {
+    color: var(--orange) !important;
+}
+
+/* ── 13. Result button — glow pulse when fresh ───────── */
+@keyframes glowPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(224, 123, 32, 0);
+    }
+
+    50% {
+        box-shadow: 0 0 0 6px rgba(224, 123, 32, 0.15);
+    }
+}
+
+.result-btn .stButton>button {
+    animation: glowPulse 2s ease-in-out 3;
+}
+
+.result-btn .stButton>button:hover {
+    animation: none;
+}
+
+/* ── 14. Input focus — warm glow ─────────────────────── */
+.stTextInput>div>div>input:focus,
+.stTextArea textarea:focus {
+    box-shadow: 0 0 0 3px rgba(224, 123, 32, 0.15),
+        0 1px 4px rgba(140, 70, 10, 0.08) !important;
+}
+
+/* ── 15. Page load fade-in ───────────────────────────── */
+@keyframes pageIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+[data-testid="stMainBlockContainer"] {
+    animation: pageIn 0.5s ease-out;
+}
+
+/* ══════════════════════════════════════════════════════
+   HEADER ANIMATIONS
+   ══════════════════════════════════════════════════════ */
+
+/* ── Waveform ─────────────────────────────────────────── */
+.waveform-wrap {
     display: flex;
+    justify-content: center;
+    margin-bottom: 1.2rem;
+    opacity: 0.55;
+}
+
+.waveform {
+    width: 120px;
+    height: 28px;
+}
+
+.waveform .bar {
+    fill: var(--orange);
+    transform-origin: center;
+}
+
+/* staggered bounce per bar */
+@keyframes waveBar {
+
+    0%,
+    100% {
+        transform: scaleY(1);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scaleY(0.3);
+        opacity: 1;
+    }
+}
+
+.b1 {
+    animation: waveBar 1.1s ease-in-out -.90s infinite;
+}
+
+.b2 {
+    animation: waveBar 1.1s ease-in-out -.75s infinite;
+}
+
+.b3 {
+    animation: waveBar 1.1s ease-in-out -.60s infinite;
+}
+
+.b4 {
+    animation: waveBar 1.1s ease-in-out -.45s infinite;
+}
+
+.b5 {
+    animation: waveBar 1.1s ease-in-out -.30s infinite;
+}
+
+.b6 {
+    animation: waveBar 1.1s ease-in-out -.15s infinite;
+}
+
+.b7 {
+    animation: waveBar 1.1s ease-in-out 0.00s infinite;
+}
+
+.b8 {
+    animation: waveBar 1.1s ease-in-out -.55s infinite;
+}
+
+.b9 {
+    animation: waveBar 1.1s ease-in-out -.40s infinite;
+}
+
+.b10 {
+    animation: waveBar 1.1s ease-in-out -.25s infinite;
+}
+
+.b11 {
+    animation: waveBar 1.1s ease-in-out -.10s infinite;
+}
+
+.b12 {
+    animation: waveBar 1.1s ease-in-out -.65s infinite;
+}
+
+.b13 {
+    animation: waveBar 1.1s ease-in-out -.80s infinite;
+}
+
+.b14 {
+    animation: waveBar 1.1s ease-in-out -.35s infinite;
+}
+
+.b15 {
+    animation: waveBar 1.1s ease-in-out -.50s infinite;
+}
+
+
+
+/* ── Typing tagline ───────────────────────────────────── */
+.app-tagline {
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 1.2rem 1.6rem;
-    border-bottom: 1px solid var(--border);
-    background: linear-gradient(135deg, #0d1829, #162240);
+    gap: 1px;
+    min-height: 1.4rem;
 }
 
-.modal-title {
-    font-family: 'Cinzel', serif;
-    color: var(--gold-light);
-    font-size: 1rem;
-    letter-spacing: .08em;
-    margin: 0;
+.cursor {
+    display: none;
 }
 
-.modal-body {
-    padding: 1.6rem;
+.typing-text {
+    color: var(--text-muted) !important;
+    font-size: 0.85rem;
+    font-weight: 300;
+    min-width: 2px;
 }
 
-.modal-footer {
-    padding: 1rem 1.6rem;
-    border-top: 1px solid var(--border);
+/* CSS-only fallback typing สำหรับกรณี JS ไม่ทำงาน */
+@keyframes cssType {
+    0% {
+        width: 0;
+        opacity: 1;
+    }
+
+    28% {
+        width: 100%;
+        opacity: 1;
+    }
+
+    35% {
+        width: 100%;
+        opacity: 1;
+    }
+
+    48% {
+        width: 0;
+        opacity: 1;
+    }
+
+    50% {
+        width: 0;
+        opacity: 0;
+    }
+
+    52% {
+        width: 0;
+        opacity: 1;
+    }
+
+    80% {
+        width: 100%;
+        opacity: 1;
+    }
+
+    88% {
+        width: 100%;
+        opacity: 1;
+    }
+
+    100% {
+        width: 0;
+        opacity: 1;
+    }
+}
+
+/* ถ้า JS ไม่รัน .typing-text จะว่าง — แสดง static text แทน */
+.typing-text:empty::before {
+    content: "Transcribe & summarize any audio or video";
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    font-weight: 300;
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: cssType 8s steps(44, end) infinite;
+    max-width: 36ch;
+}
+
+/* ── Header layout ────────────────────────────────────── */
+.app-header {
+    text-align: center;
+    padding: 2rem 1.6rem 1.2rem !important;
+}
+
+.app-header-left {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 0.4rem !important;
+}
+
+/* ══════════════════════════════════════════════════════
+   KEYWORD CHIPS & TAGS
+   ══════════════════════════════════════════════════════ */
+
+.kw-wrap {
     display: flex;
-    gap: .8rem;
     flex-wrap: wrap;
-    background: rgba(0, 0, 0, .2);
+    gap: 0.4rem;
+    margin-bottom: 1rem;
 }
 
-/* SECTION LABEL */
-.section-label {
-    font-family: 'Cinzel', serif !important;
-    font-size: .68rem;
-    letter-spacing: .22em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: .6rem;
+.kw-chip {
+    display: inline-block;
+    padding: 0.2rem 0.65rem;
+    background: rgba(240, 145, 58, 0.12);
+    color: var(--orange-light) !important;
+    border: 1px solid rgba(240, 145, 58, 0.25);
+    border-radius: 20px;
+    font-size: 0.74rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: background 0.15s, transform 0.15s;
+    cursor: default;
+}
+
+.kw-chip:hover {
+    background: rgba(240, 145, 58, 0.22);
+    transform: translateY(-1px);
+}
+
+.tag-wrap {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    margin-top: 0.25rem;
+}
+
+.tag-chip {
+    display: inline-block;
+    padding: 0.12rem 0.5rem;
+    background: rgba(200, 151, 90, 0.15);
+    color: var(--text-dim) !important;
+    border: 1px solid rgba(200, 151, 90, 0.25);
+    border-radius: 12px;
+    font-size: 0.7rem;
+}
+
+/* ── Copy button ────────────────────────────────────── */
+.copy-btn {
+    display: inline-block;
+    margin-top: 0.6rem;
+    padding: 0.3rem 0.9rem;
+    background: rgba(240, 145, 58, 0.1);
+    color: var(--orange-light) !important;
+    border: 1px solid rgba(240, 145, 58, 0.25);
+    border-radius: 6px;
+    font-size: 0.76rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.15s;
+}
+
+.copy-btn:hover {
+    background: rgba(240, 145, 58, 0.22);
+}
+
+/* ── Quality bar ────────────────────────────────────── */
+.quality-bar {
     display: flex;
     align-items: center;
-    gap: .5rem;
+    gap: 0.5rem;
+    margin-bottom: 0.8rem;
+    padding: 0.4rem 0.8rem;
+    background: rgba(240, 145, 58, 0.06);
+    border-radius: 6px;
+    border-left: 3px solid var(--orange);
 }
 
-.section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
+.quality-label {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--text-muted) !important;
 }
 
-.stCaption {
-    color: var(--text-dim) !important;
-    font-size: .78rem !important;
+.quality-dots {
+    font-size: 1rem;
+    letter-spacing: 0.1em;
 }
 
-.stRadio label {
-    color: var(--text) !important;
-    font-size: .85rem !important;
+.quality-dots-empty {
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted) !important;
+    opacity: 0.3;
+}
+
+.quality-score-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-left: 0.2rem;
 }

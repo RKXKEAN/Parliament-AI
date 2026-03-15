@@ -12,8 +12,8 @@ from datetime import datetime
 def export_txt(transcript: str, summary: str) -> bytes:
     """Return UTF-8 encoded bytes of a plain-text report."""
     now = datetime.now().strftime("%d/%m/%Y %H:%M")
-    content = f"""รายงานการประชุมรัฐสภาไทย
-สร้างโดย: สภา AI — ระบบถอดความและสรุปการประชุม
+    content = f"""รายงานการสรุป
+สร้างโดย: สภา AI — ระบบถอดความและสรุปจากวิดีโอและเสียง
 วันที่สร้าง: {now}
 {"=" * 70}
 
